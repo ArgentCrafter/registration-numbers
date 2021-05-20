@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="registration_number.css">
+    <title>Registration numbers</title>
 </head>
+
 <body>
-    
+    <div class="containerAll">
+        <div class="content">
+            <div class="heading">
+                <h1>REGISTRATION NUMBERS</h1>
+            </div><br>
+            <div class="addRegistration">
+                <label for="addReg">Registration Number:</label>
+                <input type="text" id="addReg" name="addRegistration">
+                <button type="button" id="addRegBtn" name="addRegButton">Add</button>
+            </div><br>
+            <div class="townFilter">
+                <div>
+                    <input type="radio" name="townFilter" id="bellville" value="cy">
+                    <label for="bellville">Bellville</label>
+                </div>
+                <div>
+                    <input type="radio" name="townFilter" id="capeTown" value="ca">
+                    <label for="capeTown">Cape Town</label>
+                </div>
+                <div>
+                    <input type="radio" name="townFilter" id="malmesbury" value="ck">
+                    <label for="bellville">Malmesbury</label>
+                </div>
+            </div>
+            <br>
+            <div class="buttons">
+                <div class="resetBtnDiv">
+                    <button class="btn" type="button" id="resetBtn" name="resetButton">Reset</button>
+                </div>
+                <div class="showBtnDiv">
+                    <button class="btn" type="button" id="showBtn" name="showButton">Show</button>
+                </div>
+                <div class="showAllBtnDiv">
+                    <button class="btn" type="button" id="showAllBtn" name="showAllButton">Show all</button>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
 </body>
+<script src="functions.js" charset="utf-8"></script>
+<script src="registration_number.js" charset="utf-8"></script>
+
 </html>
