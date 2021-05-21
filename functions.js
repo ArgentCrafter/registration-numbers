@@ -1,8 +1,7 @@
 function regFunctions() {
-    regList = {};
+  const regList = {};
 
+  return {
 
-    return {
-
-    }
+  };
 }
