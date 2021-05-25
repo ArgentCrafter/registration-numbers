@@ -8,7 +8,7 @@ const regList = document.getElementById('regList');
 
 let reg = regFunctions();
 var regKeys = [];
-// const regEx = /[/.,?><';":{}+_)(*&^%$#@!=-`~]/;
+
 const regEx = /(^[a-z]{2}\s\d{5}$)|(^[a-z]{2}\s\d{3}-\d{2}$)/i;
 
 function createList() {
