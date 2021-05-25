@@ -8,7 +8,8 @@ const regList = document.getElementById('regList');
 
 let reg = regFunctions();
 var regKeys = [];
-const regEx = /[/.,?><';":{}+_)(*&^%$#@!=-`~]/;
+// const regEx = /[/.,?><';":{}+_)(*&^%$#@!=-`~]/;
+const regEx = /(^[a-z]{2}\s\d{5}$)|(^[a-z]{2}\s\d{3}-\d{2}$)/i;
 
 function createList() {
   regKeys = Object.keys(JSON.parse(localStorage.getItem("registration")));
@@ -17,12 +18,23 @@ function createList() {
   }
 }
 
-addBtn.addEventListener('click', () => {
-  if ((textInputElement.value.startsWith('ca')) || (textInputElement.value.startsWith('cy')) || (textInputElement.value.startsWith('ck'))) {
-    if (!regEx.test(textInputElement.value)) {
-      reg.addButton(textInputElement.value.toLowerCase());
-      localStorage.setItem("registration", JSON.stringify(reg.getRegList()));
+document.body.onload = (() => {
+  if (localStorage["registration"]) {
+    reg.setRegList(JSON.parse(localStorage.getItem("registration")));
+  }
 
+  createList();
+});
+
+addBtn.addEventListener('click', () => {
+  // var flagExistingReg = false;
+  var gotRegList = reg.getRegList();
+  // var regListKeys = Object.keys(gotRegList);
+
+  if (reg.checkRegNum(textInputElement.value.toLowerCase())) {
+    if (regEx.test(textInputElement.value)) {
+      reg.addButton(textInputElement.value.toLowerCase());
+      localStorage.setItem("registration", JSON.stringify(gotRegList));
       regList.innerHTML = "";
       createList();
 
@@ -32,7 +44,7 @@ addBtn.addEventListener('click', () => {
       setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
     } else {
       feedbackElem.style.color = "red";
-      feedbackElem.innerHTML = "Invalid character detected!"
+      feedbackElem.innerHTML = "Invalid input format"
       setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
       setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
     }
@@ -47,36 +59,49 @@ addBtn.addEventListener('click', () => {
     setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
     setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
   }
-}
-);
-
+});
 
 showBtn.addEventListener('click', () => {
   const checkedTown = document.querySelector("input[name='townFilter']:checked");
 
-  regList.innerHTML = "";
-
-  for (var i = 0; i < regKeys.length; i++) {
-    if (regKeys[i].startsWith(checkedTown.value)) {
-      regList.innerHTML += '<li class="regListItem">' + regKeys[i] + "</li>";
+  if (checkedTown) {
+    regList.innerHTML = "";
+    for (var i = 0; i < regKeys.length; i++) {
+      if (regKeys[i].startsWith(checkedTown.value)) {
+        regList.innerHTML += '<li class="regListItem">' + regKeys[i] + "</li>";
+      }
     }
+  } else {
+    feedbackElem.style.color = "red";
+    feedbackElem.innerHTML = "Please select a town"
+    setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
+    setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
   }
 })
 
 showAllBtn.addEventListener('click', () => {
   regList.innerHTML = "";
+
   createList();
 })
-
-document.body.onload = (() => {
-  if (localStorage["registration"]) {
-    reg.setRegList(JSON.parse(localStorage.getItem("registration")));
-  }
-
-  createList();
-});
 
 resetBtn.addEventListener('click', () => {
   localStorage.clear();
   location.reload();
 });
+
+
+// for (var i = 0; i < regListKeys.length; i++) {
+      //   console.log(textInputElement.value);
+      //   console.log(gotRegList[regListKeys[i]]);
+      //   if ((gotRegList[regListKeys[i]] === 1) && (gotRegList[regListKeys[i]] === textInputElement.value)) {
+      //     flagExistingReg = true;
+      //   }
+      // }
+      // if (flagExistingReg) {
+      //   feedbackElem.style.color = "red";
+      //   feedbackElem.innerHTML = "Registration number is already registered!"
+      //   setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
+      //   setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
+      //   flagExistingReg = false;
+      // } else {

@@ -2,13 +2,18 @@ function regFunctions() {
   var regList = {};
 
   function addButton(input) {
-    console.log(input);
     if ((input.startsWith('ca')) || (input.startsWith('cy')) || (input.startsWith('ck'))) {
       if (regList[input] === undefined) {
         regList[input] = 1;
-      } else {
-        regList[input]++;
       }
+    }
+  }
+
+  function checkRegNum(input) {
+    if ((input.startsWith('ca')) || (input.startsWith('cy')) || (input.startsWith('ck'))) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -23,6 +28,7 @@ function regFunctions() {
   return {
     addButton,
     setRegList,
-    getRegList
+    getRegList,
+    checkRegNum
   };
 }
