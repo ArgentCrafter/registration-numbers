@@ -8,7 +8,6 @@ const regList = document.getElementById('regList');
 
 let reg = regFunctions();
 var regKeys = [];
-const textInput = textInputElement.value;
 
 const regEx = /(^[a-z]{2}\s\d{5}$)|(^[a-z]{2}\s\d{3}-\d{2}$)/i;
 
@@ -32,9 +31,9 @@ addBtn.addEventListener('click', () => {
   var gotRegList = reg.getRegList();
   // var regListKeys = Object.keys(gotRegList);
 
-  if (reg.checkRegNum(textInput.toLowerCase())) {
-    if (regEx.test(textInput)) {
-      reg.addButton(textInput.toLowerCase());
+  if (reg.checkRegNum(textInputElement.value.toLowerCase())) {
+    if (regEx.test(textInputElement.value)) {
+      reg.addButton(textInputElement.value.toLowerCase());
       localStorage.setItem("registration", JSON.stringify(gotRegList));
       regList.innerHTML = "";
       createList();
@@ -49,7 +48,7 @@ addBtn.addEventListener('click', () => {
       setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
       setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
     }
-  } else if (textInput === "") {
+  } else if (textInputElement.value === "") {
     feedbackElem.style.color = "red";
     feedbackElem.innerHTML = "No characters detected!"
     setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
