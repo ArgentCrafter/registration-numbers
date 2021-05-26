@@ -87,4 +87,23 @@ describe("Factory function tests:", () => {
             assert.deepEqual(errorLogic(), "Please enter a license plate belonging to Bellville, Cape Town or Malmesbury");
         })
     })
+    describe("Writing to the object:", () => {
+        it("Output should equal '{ 'ca 123-45': 1 }' when input is 'ca 123-45'", () => {
+            let reg = regFunctions();
+            reg.addButton("ca 123-45");
+            assert.deepEqual(reg.getRegList(), { 'ca 123-45': 1 })
+        })
+        it("Output should equal '{ 'ca 123-45': 1, 'cy 12345': 1 }' when first input is 'ca 123-45' and second input is 'cy 12345'", () => {
+            let reg = regFunctions();
+            reg.addButton("ca 123-45");
+            reg.addButton("cy 12345")
+            assert.deepEqual(reg.getRegList(), { 'ca 123-45': 1, 'cy 12345': 1 })
+        })
+        it("Output should equal '{ 'ca 123-45': 1 }' when first input is 'ca 123-45' and second input is 'cn 12345'", () => {
+            let reg = regFunctions();
+            reg.addButton("ca 123-45");
+            reg.addButton("cn 12345")
+            assert.deepEqual(reg.getRegList(), { 'ca 123-45': 1 })
+        })
+    })
 });

@@ -8,6 +8,7 @@ const regList = document.getElementById('regList');
 
 let reg = regFunctions();
 var regKeys = [];
+const textInput = textInputElement.value;
 
 const regEx = /(^[a-z]{2}\s\d{5}$)|(^[a-z]{2}\s\d{3}-\d{2}$)/i;
 
@@ -31,9 +32,9 @@ addBtn.addEventListener('click', () => {
   var gotRegList = reg.getRegList();
   // var regListKeys = Object.keys(gotRegList);
 
-  if (reg.checkRegNum(textInputElement.value.toLowerCase())) {
-    if (regEx.test(textInputElement.value)) {
-      reg.addButton(textInputElement.value.toLowerCase());
+  if (reg.checkRegNum(textInput.toLowerCase())) {
+    if (regEx.test(textInput)) {
+      reg.addButton(textInput.toLowerCase());
       localStorage.setItem("registration", JSON.stringify(gotRegList));
       regList.innerHTML = "";
       createList();
@@ -48,7 +49,7 @@ addBtn.addEventListener('click', () => {
       setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
       setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
     }
-  } else if (textInputElement.value === "") {
+  } else if (textInput === "") {
     feedbackElem.style.color = "red";
     feedbackElem.innerHTML = "No characters detected!"
     setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
@@ -99,7 +100,7 @@ resetBtn.addEventListener('click', () => {
       //   }
       // }
       // if (flagExistingReg) {
-      //   feedbackElem.style.color = "red";
+      //   feedbackElem.style.color = "red";   
       //   feedbackElem.innerHTML = "Registration number is already registered!"
       //   setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
       //   setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
