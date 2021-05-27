@@ -14,7 +14,7 @@ const regEx = /(^[a-z]{2}\s\d{5}$)|(^[a-z]{2}\s\d{3}-\d{2}$)/i;
 function createList() {
   regKeys = Object.keys(JSON.parse(localStorage.getItem("registration")));
   for (var i = 0; i < regKeys.length; i++) {
-    regList.innerHTML += '<li class="regListItem">' + regKeys[i] + "</li>";
+    regList.innerHTML += '<li class="regListItem">' + regKeys[i].toUpperCase() + "</li>";
   }
 }
 
@@ -34,7 +34,7 @@ addBtn.addEventListener('click', () => {
   console.log(regListKeys);
 
   for (var i = 0; i < regListKeys.length; i++) {
-    if (regListKeys[i] === textInputElement.value) {
+    if (regListKeys[i] === textInputElement.value.toLowerCase()) {
       flagRegFound = true;
     }
   }
@@ -84,7 +84,7 @@ showBtn.addEventListener('click', () => {
     regList.innerHTML = "";
     for (var i = 0; i < regKeys.length; i++) {
       if (regKeys[i].startsWith(checkedTown.value)) {
-        regList.innerHTML += '<li class="regListItem">' + regKeys[i] + "</li>";
+        regList.innerHTML += '<li class="regListItem">' + regKeys[i].toUpperCase() + "</li>";
       }
     }
   } else {
