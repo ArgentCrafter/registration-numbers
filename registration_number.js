@@ -27,38 +27,54 @@ document.body.onload = (() => {
 });
 
 addBtn.addEventListener('click', () => {
-  // var flagExistingReg = false;
   var gotRegList = reg.getRegList();
-  // var regListKeys = Object.keys(gotRegList);
+  var regListKeys = Object.keys(gotRegList);
+  var flagRegFound = false;
 
-  if (reg.checkRegNum(textInputElement.value.toLowerCase())) {
-    if (regEx.test(textInputElement.value)) {
-      reg.addButton(textInputElement.value.toLowerCase());
-      localStorage.setItem("registration", JSON.stringify(gotRegList));
-      regList.innerHTML = "";
-      createList();
+  console.log(regListKeys);
 
-      feedbackElem.style.color = "green";
-      feedbackElem.innerHTML = "Registration number successfully added!"
+  for (var i = 0; i < regListKeys.length; i++) {
+    if (regListKeys[i] === textInputElement.value) {
+      flagRegFound = true;
+    }
+  }
+  if (flagRegFound === false) {
+    if (reg.checkRegNum(textInputElement.value.toLowerCase())) {
+      if (regEx.test(textInputElement.value)) {
+        reg.addButton(textInputElement.value.toLowerCase());
+        localStorage.setItem("registration", JSON.stringify(gotRegList));
+        regList.innerHTML = "";
+        createList();
+
+        feedbackElem.style.color = "green";
+        feedbackElem.innerHTML = "Registration number successfully added!"
+        setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
+        setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
+      } else {
+        feedbackElem.style.color = "red";
+        feedbackElem.innerHTML = "Invalid input format"
+        setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
+        setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
+      }
+    } else if (textInputElement.value === "") {
+      feedbackElem.style.color = "red";
+      feedbackElem.innerHTML = "No characters detected!"
       setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
       setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
     } else {
       feedbackElem.style.color = "red";
-      feedbackElem.innerHTML = "Invalid input format"
+      feedbackElem.innerHTML = "Please enter a license plate belonging to either Bellville, Cape Town or Malmesbury"
       setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
       setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
     }
-  } else if (textInputElement.value === "") {
-    feedbackElem.style.color = "red";
-    feedbackElem.innerHTML = "No characters detected!"
-    setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
-    setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
   } else {
     feedbackElem.style.color = "red";
-    feedbackElem.innerHTML = "Please enter a license plate belonging to either Bellville, Cape Town or Malmesbury"
+    feedbackElem.innerHTML = "Registration number has already been registered"
     setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
     setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
   }
+
+  textInputElement.value = "";
 });
 
 showBtn.addEventListener('click', () => {
@@ -77,6 +93,15 @@ showBtn.addEventListener('click', () => {
     setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
     setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
   }
+
+  if (regList.innerHTML === "") {
+    feedbackElem.style.color = "red";
+    feedbackElem.innerHTML = "No registration numbers stored for this town"
+    setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
+    setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
+
+    createList();
+  }
 })
 
 showAllBtn.addEventListener('click', () => {
@@ -89,19 +114,3 @@ resetBtn.addEventListener('click', () => {
   localStorage.clear();
   location.reload();
 });
-
-
-// for (var i = 0; i < regListKeys.length; i++) {
-      //   console.log(textInputElement.value);
-      //   console.log(gotRegList[regListKeys[i]]);
-      //   if ((gotRegList[regListKeys[i]] === 1) && (gotRegList[regListKeys[i]] === textInputElement.value)) {
-      //     flagExistingReg = true;
-      //   }
-      // }
-      // if (flagExistingReg) {
-      //   feedbackElem.style.color = "red";   
-      //   feedbackElem.innerHTML = "Registration number is already registered!"
-      //   setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
-      //   setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
-      //   flagExistingReg = false;
-      // } else {
