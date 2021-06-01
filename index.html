@@ -1,63 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="registration_number.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="registration_number.css" />
     <title>Registration numbers</title>
-</head>
-
-<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/x-template" class="template">
+        {{#each reg}}
+            <li class="regListItem">{{this}}</li>
+        {{/each}}
+      </script>
+  </head>
+  <body>
     <div class="containerAll">
+      <div class="nonTemplated">
         <div class="content">
-            <div class="heading">
-                <h1>REGISTRATION NUMBERS</h1>
-                <h4>Format: xx yyyyy or xx yyy-yy <br> e.g. 'cy 12345' or 'cy 123-45'</h4>
-            </div>
-            <div class="feedback">
-                <h3></h3>
-            </div><br>
-            <div class="addRegistration">
-                <label for="addReg">Registration Number:</label>
-                <input type="text" id="addReg" name="addRegistration" placeholder="e.g CY 330662">
-                <button class="btn" style="width: 10%;" type="button" id="addRegBtn" name="addRegButton">Add</button>
-            </div><br>
-            <div class="townFilter">
-                <div>
-                    <input type="radio" name="townFilter" id="bellville" value="cy">
-                    <label for="bellville">Bellville</label>
-                </div>
-                <div>
-                    <input type="radio" name="townFilter" id="capeTown" value="ca">
-                    <label for="capeTown">Cape Town</label>
-                </div>
-                <div>
-                    <input type="radio" name="townFilter" id="malmesbury" value="ck">
-                    <label for="bellville">Malmesbury</label>
-                </div>
-            </div>
-            <br>
-            <div class="buttons">
-                <div class="resetBtnDiv">
-                    <button class="btn" type="button" id="resetBtn" name="resetButton">Reset</button>
-                </div>
-                <div class="showBtnDiv">
-                    <button class="btn" type="button" id="showBtn" name="showButton">Show</button>
-                </div>
-                <div class="showAllBtnDiv">
-                    <button class="btn" type="button" id="showAllBtn" name="showAllButton">Show all</button>
-                </div>
-            </div>
-            <br>
+          <div class="heading">
+            <h1>REGISTRATION NUMBERS</h1>
+            <h4>
+              Format: xx yyyyy or xx yyy-yy <br />
+              e.g. 'cy 12345' or 'cy 123-45'
+            </h4>
+          </div>
+          <div class="feedback">
+            <h3></h3>
+          </div>
+          <br />
+          <div class="addRegistration">
+            <label for="addReg">Registration Number:</label>
+            <input
+              type="text"
+              id="addReg"
+              name="addRegistration"
+              placeholder="e.g CY 330662"
+            />
+            <button
+              class="btn"
+              style="width: 10%"
+              type="button"
+              id="addRegBtn"
+              name="addRegButton"
+            >
+              Add
+            </button>
+          </div>
+          <br />
+          <div class="townFilter">
             <div>
-                <ul class="regList" id="regList">
-                </ul>
+              <input type="radio" name="townFilter" id="bellville" value="cy" />
+              <label for="bellville">Bellville</label>
             </div>
+            <div>
+              <input type="radio" name="townFilter" id="capeTown" value="ca" />
+              <label for="capeTown">Town</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="townFilter"
+                id="malmesbury"
+                value="ck"
+              />
+              <label for="bellville">Malmesbury</label>
+            </div>
+          </div>
+          <br />
+          <div class="buttons">
+            <div class="resetBtnDiv">
+              <button
+                class="btn"
+                type="button"
+                id="resetBtn"
+                name="resetButton"
+              >
+                Reset
+              </button>
+            </div>
+            <div class="showBtnDiv">
+              <button class="btn" type="button" id="showBtn" name="showButton">
+                Show
+              </button>
+            </div>
+            <div class="showAllBtnDiv">
+              <button
+                class="btn"
+                type="button"
+                id="showAllBtn"
+                name="showAllButton"
+              >
+                Show all
+              </button>
+            </div>
+          </div>
+          <br />
+          <div>
+            <ul class="regList" id="regList"></ul>
+          </div>
         </div>
+      </div>
+      <div class="templated">
+        <div class="content">
+          <div class="heading">
+            <h1>REGISTRATION NUMBERS</h1>
+            <h4>
+              Format: xx yyyyy or xx yyy-yy <br />
+              e.g. 'cy 12345' or 'cy 123-45'
+            </h4>
+          </div>
+          <div class="feedback2">
+            <h3></h3>
+          </div>
+          <br />
+          <div class="addRegistration">
+            <label for="addReg">Registration Number:</label>
+            <input type="text" id="addReg2" name="addRegistration" placeholder="e.g CY 330662"
+            />
+            <button class="btn" style="width: 10%" type="button" id="addRegBtn2" name="addRegButton"
+            >
+              Add
+            </button>
+          </div>
+          <br />
+          <div class="townFilter">
+            <div>
+              <input type="radio" name="townFilter2" id="bellville2" value="cy"
+              />
+              <label for="bellville">Bellville</label>
+            </div>
+            <div>
+              <input type="radio" name="townFilter2" id="capeTown2" value="ca" />
+              <label for="capeTown">Town</label>
+            </div>
+            <div>
+              <input type="radio" name="townFilter2" id="malmesbury2" value="ck"
+              />
+              <label for="bellville">Malmesbury</label>
+            </div>
+          </div>
+          <br />
+          <div class="buttons">
+            <div class="resetBtnDiv">
+              <button class="btn" type="button" id="resetBtn2" name="resetButton">  Reset</button>
+            </div>
+            <div class="showBtnDiv">
+              <button class="btn" type="button" id="showBtn2" name="showButton">
+                Show
+              </button>
+            </div>
+            <div class="showAllBtnDiv">
+              <button class="btn" type="button" id="showAllBtn2" name="showAllButton"
+              >
+                Show all
+              </button>
+            </div>
+          </div>
+          <br />
+          <div>
+            <ul class="regList" id="regList2">
+
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-<script src="functions.js" charset="utf-8"></script>
-<script src="registration_number.js" charset="utf-8"></script>
+  </body>
+  <script src="functions.js" charset="utf-8"></script>
+  <script src="registration_number.js" charset="utf-8"></script>
 </html>
