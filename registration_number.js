@@ -26,7 +26,7 @@ function createList() {
 }
 
 function createList2() {
-  regKeys = Object.keys(JSON.parse(localStorage.getItem("registration")));
+  regKeys = Object.keys(JSON.parse(localStorage.getItem("registration2")));
   var capKeys = [];
 
   for (var i = 0; i < regKeys.length; i++) {
@@ -65,9 +65,7 @@ addBtn.addEventListener('click', () => {
         reg.addButton(textInputElement.value.toLowerCase());
         localStorage.setItem("registration", JSON.stringify(gotRegList));
         regList.innerHTML = "";
-        regList2.innerHTML = "";
         createList();
-        createList2();
 
         feedbackElem.style.color = "green";
         feedbackElem.innerHTML = "Registration number successfully added!"
@@ -100,7 +98,7 @@ addBtn.addEventListener('click', () => {
 });
 
 addBtn2.addEventListener('click', () => {
-  var gotRegList = reg.getRegList();
+  var gotRegList = reg.getRegList2();
   var regListKeys = Object.keys(gotRegList);
   var flagRegFound = false;
 
@@ -112,11 +110,9 @@ addBtn2.addEventListener('click', () => {
   if (flagRegFound === false) {
     if (reg.checkRegNum(textInputElement2.value.toLowerCase())) {
       if (regEx.test(textInputElement2.value)) {
-        reg.addButton(textInputElement2.value.toLowerCase());
-        localStorage.setItem("registration", JSON.stringify(gotRegList));
-        regList.innerHTML = "";
+        reg.addButton2(textInputElement2.value.toLowerCase());
+        localStorage.setItem("registration2", JSON.stringify(gotRegList));
         regList2.innerHTML = "";
-        createList();
         createList2();
 
         feedbackElem2.style.color = "green";
@@ -225,11 +221,11 @@ showAllBtn2.addEventListener('click', () => {
 })
 
 resetBtn.addEventListener('click', () => {
-  localStorage.clear();
+  localStorage.removeItem("registration");
   location.reload();
 });
 
 resetBtn2.addEventListener('click', () => {
-  localStorage.clear();
+  localStorage.removeItem("registration2");
   location.reload();
 })
