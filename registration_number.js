@@ -75,7 +75,7 @@ addBtn.addEventListener('click', () => {
         setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
       } else {
         feedbackElem.style.color = "red";
-        feedbackElem.innerHTML = "Invalid input format"
+        feedbackElem.innerHTML = "Invalid input format or characters"
         setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
         setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
       }
@@ -96,7 +96,6 @@ addBtn.addEventListener('click', () => {
     setTimeout(() => { feedbackElem.innerHTML = "" }, 5000);
     setTimeout(() => { feedbackElem.style.color = "black" }, 5000);
   }
-
   textInputElement.value = "";
 });
 
@@ -126,7 +125,7 @@ addBtn2.addEventListener('click', () => {
         setTimeout(() => { feedbackElem2.style.color = "black" }, 5000);
       } else {
         feedbackElem2.style.color = "red";
-        feedbackElem2.innerHTML = "Invalid input format"
+        feedbackElem2.innerHTML = "Invalid input format or characters"
         setTimeout(() => { feedbackElem2.innerHTML = "" }, 5000);
         setTimeout(() => { feedbackElem2.style.color = "black" }, 5000);
       }
