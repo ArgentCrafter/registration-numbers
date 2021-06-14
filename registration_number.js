@@ -44,9 +44,12 @@ document.body.onload = (() => {
   if (localStorage["registration"]) {
     reg.setRegList(JSON.parse(localStorage.getItem("registration")));
   }
-
-  createList();
-  createList2();
+  if (localStorage["registration"]) {
+    createList();
+  }
+  if (localStorage["registration2"]) {
+    createList2();
+  }
 });
 
 addBtn.addEventListener('click', () => {
